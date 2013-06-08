@@ -15,11 +15,14 @@ class Contact
 	end 
 
 	def contact_display 
-		puts "ID: #{@id}"
+		puts "ID:         #{@id}"
 		puts "First Name: #{@firstname}" 
-		puts "Last Name: #{@lastname}"
-		puts "Email: #{email}"
-		puts "Notes: #{notes}"
+		puts "Last Name:  #{@lastname}"
+		puts "Email:      #{email}"
+		puts "Notes:      #{notes}"
+		puts 
+		puts "---------------------------------------"
+		puts 
 	end 
 
 

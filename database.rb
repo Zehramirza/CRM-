@@ -1,3 +1,4 @@
+require "pry"
 require_relative "contact" 
 
 class Database 
@@ -8,71 +9,59 @@ class Database
 		@new_contacts = []
 	end
 
-	def add(contact) #done 
-       new_contacts << contact
+	def add(id,firstname, lastname, email, notes) #done 
+       @new_contacts << Contact.new(id, firstname, lastname, email, notes)
 
 
 	end 
 
-	def modify_contact(contact)
-		
-		@new_contacts.each do |contact|
-			if contact.id== search
-			 contact.id = modified 
-			elsif contact.firstname == search
-			return contact
-		    elsif contact.lastname == search
-		    return contact
-		    elsif contact.email == search
-			return contact
-		    elsif contact.notes == search
-			return contact
+	def modify_contact(actual_att, attribute, modification)
+		c = @new_contacts.each do |contact|
+			(contact.id == actual_att) || (contact.firstname == actual_att) || (contact.lastname == actual_att) || (contact.email == actual_att)
+		    end
+		  if c 
+		  c.send(attribute + '=', modification) 
 
-
-		end
+		  end
+          
+          puts c  
 	end
  	
-	end 
+	
 
 	def display_all_contacts #done 
 		new_contacts.each {|contact| contact.contact_display }
 	end 
 
-	def display_particular_contact 
-	end
-	
-	def find_contact(search)
-			@new_contacts.each do |contact|
-			if contact.firstname == search
-			return contact
-		    elsif contact.lastname == search
-		    return contact
-		end
-	end
+	def display_particular_contact(attribute)
+        @new_contacts.each do |contact|
+        	if (contact.id == attribute) || (contact.firstname == attribute) || (contact.lastname == attribute) || (contact.email == attribute)
+            contact.contact_display
+        	end
+        end
+
 	end
 	
 
-	def display_info_by_attribute(search)
+	def display_info_by_attribute(arg)
+		attr_array = []
+
 		@new_contacts.each do |contact|
-			if contact.id == search
-			return contact
-			elsif contact.firstname == search
-			return contact
-		    elsif contact.lastname == search
-		    return contact
-		    elsif contact.email == search
-			return contact
-		    elsif contact.notes == search
-			return contact
-
-
+			attr_array << contact.send(arg)
 		end
+
+		puts attr_array 
+	end
 	
 
-
-	end
-
-	def delete_contact
+	def delete_contact(attri)
+		@new_contacts.each do |contact|
+			if (contact.id == attri) || (contact.firstname == attri) || (contact.lastname == attri) || (contact.email == attri)
+				@new_contacts.delete(contact)
+			end
+		end    	
 	
 	end 
-end
+
+
+end	
