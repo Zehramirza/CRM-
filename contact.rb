@@ -29,4 +29,4 @@ class Contact
 end
 
 
-# puts contact_array[0].firstname #=> "will"
+# puts contact_array[0].firstname #=> "Zehra"
